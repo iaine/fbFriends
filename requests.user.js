@@ -14,12 +14,23 @@
 *  Find the relevant button and the click on it.
 */
 var clickFlyOut = function() {
-      //get the fb Requests Jewel id
-
+    //get the fb Requests Jewel id
     let fbJewel = document.getElementById('fbRequestsJewel');
     if (!fbJewel) { console.log('Error: The request cannot be found. Possibly the Id has changed.'); }
+    //get the position 
+      findPosition();
     fbJewel.firstChild.click();
     clickAcceptButtons();
+}
+
+/**
+* Move the cursor to the position given.
+*/  
+var findPosition = function(el) {
+      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+      
+      window.scrollTo(xPos, yPos)
 }
 
 /**
