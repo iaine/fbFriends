@@ -10,6 +10,9 @@
 
 'use strict';
 
+var xPos = '';
+var yPos = '';
+
 /**
 *  Find the relevant button and the click on it.
 */
@@ -27,10 +30,17 @@ var clickFlyOut = function() {
 * Move the cursor to the position given.
 */  
 var findPosition = function(el) {
-      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+      xPos = (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPos = (el.offsetTop - el.scrollTop + el.clientTop);
       
-      window.scrollTo(xPos, yPos)
+      scrollXY(xPos, yPos);
+}
+
+/**
+*  Move to an x,y position
+*/
+var scrollXY = function(xPosition, yPosition) {
+    window.scrollTo(xPosition, yPosition);
 }
 
 /**
@@ -39,6 +49,7 @@ var findPosition = function(el) {
 var clickAcceptButtons = function() {
     let flyoutButtons = document.getElementsByName('actions[accept]');
     for (let i in flyoutButtons) {
+        scrollXY(xPos, (yPos + 2));
         flyoutButtons[i].click();
     }
 }
